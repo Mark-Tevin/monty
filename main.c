@@ -1,52 +1,80 @@
 #include "monty.h"
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <ctype.h>
 
+bus_t my_bus = {NULL, NULL, NULL, 0};
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/** check_input - checks existance of file and if it can be opened.
+ * argc: argument count
+ * @argv: argument vector.
+ * Return: file struct
+ */
+FILE *check(int argc, char *argv[])
+{
+	FILE *fd;
+
+	if (argc == 1 || argc > 2)
+	{
+		dprintf(2, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+
+	fd = fopen(argv[1], "r");
+
+	if (fd == NULL)
+	{
+		dprintf(2, "Error: Can't open file %s|n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+
+	return (fd);
+/**
+* main - monty interpreter
+* @argc: number of arguments
+* @argv: monty file location
+* Return: 0 on success
+*/
 int main(int argc, char *argv[])
 {
-	char *line;
-        size_t len = 0;
-        unsigned int line_number = 0;
-        stack_t *stack = NULL;
+	char *current_line;
+	FILE *montyfile;
+	size_t size = 0;
+	ssize_t read_status = 1;
+	stack_t *customstack = NULL;
+	unsigned int count = 0;
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "Usage: %s <file>\n", argv[0]);
-		return (EXIT_FAILURE);
+		fprintf(stderr, "USAGE: %s montyfile\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
-	/* Open the Monty file */
-	bus.file = fopen(argv[1], "r");
-	if (bus.file == NULL)
-	{
-		perror("Error opening file");
-		return (EXIT_FAILURE);
-	}
-	while (getline(&line, &len, bus.file) != -1)
-	{
-		line_number++;
-		line = clean_line(line);  /* Clean the line from leading/trailing spaces and comments */
+	montyfile = fopen(argv[1], "r");
+	my_bus.file = montyfile;
 
-		if (line[0] != '\0')
+	if (!montyfile)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+
+	while (read_status > 0)
+	{
+		current_line = NULL;
+		read_status = getline(&current_line, &size, montyfile);
+		my_bus.content = current;
+		count++;
+
+		if (read_status > 0)
 		{
-			if (execute(line, &stack, line_number, bus.file) == EXIT_FAILURE)
-			{
-				fprintf(stderr, "Error on line %u\n", line_number);
-				free_stack(stack);
-				fclose(bus.file);
-				free(line);
-				return (EXIT_FAILURE);
-			}
+			execute(current_line, &customstack, count, montyfile);
 		}
+
+		free(current_line);
 	}
-	 /* Clean up and close the file */
-	free_stack(stack);
-	fclose(bus.file);
-	free(line);
+	free_stack(customstack);
+	fclose(montyfile);
 
-	return (EXIT_SUCCESS);
+	return (0);
 }
-
