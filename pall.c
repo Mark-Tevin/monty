@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * pall - prints the stack
  * @head: stack's head
