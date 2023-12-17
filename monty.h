@@ -70,7 +70,7 @@ typedef struct bus_s
 	FILE *file;
 	unsigned int mode;
 	unsigned int size;
-	unsigned int ln;
+	unsigned int count;
 } bus_t;
 
 
@@ -84,7 +84,7 @@ int parse_line(char *buffer, int line_number, int format);
 void len_chars(FILE *);
 void find_func(char *, char *, int, int);
 
-/*Functions*/
+/*Func prototype for the stack operation*/
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
