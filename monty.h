@@ -4,8 +4,8 @@
 #define BUF_SIZE 4096
 #define MOD_STK 0
 #define MOD_QUE 1
-
 #define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -99,7 +99,7 @@ void rotr(stack_t **stack, unsigned int line_number);
 /*Utility Functions*/
 void free_stack(stack_t *stack);
 /*External variable*/
-extern bus_t *state
+extern bus_t *state;
 /* DLinked List Operation */
 size_t print_dlistint(const stack_t *h);
 stack_t *add_dnodeint(stack_t **head, const int n);
@@ -110,7 +110,7 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 
 /*string operation*/
-int _strcmp(char *s1, char *s2);
+int compare_strings(const char *s1, const char *s2);
 
 /* Program Logic and Execution */
 void state_init(void);
