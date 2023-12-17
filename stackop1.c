@@ -31,4 +31,27 @@ int isInt(const char *s);
  * Description: This function pushes an element to the stack if the argument is
  * a valid integer.
  */
+void push(stack_t **stack, unsigned int count)
+{
+	stack_t *new_node = NULL;
 
+	if (!state->arg || !isInt(state->arg))
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", count);
+		clear_state();
+		exit(EXIT_FAILURE);
+	}
+
+	if (state->mode == MOD_STK)
+		new_node = add_dnodeint(stack, atoi(state->arg));
+	else
+		new_node = add_dnodeint_end(stack, atoi(state->arg));
+
+	if (!new_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	state->size++;
+}
