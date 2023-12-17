@@ -101,9 +101,10 @@ void free_stack(stack_t *stack);
 /*External variable*/
 extern bus_t *state;
 /* DLinked List Operation */
-size_t print_dlistint(const stack_t *h);
-stack_t *add_dnodeint(stack_t **head, const int n);
-stack_t *add_dnodeint_end(stack_t **head, const int n);
+size_t display_listint(const stack_t *head);
+
+stack_t *insert_at_start(stack_t **head, const int n);
+stack_t *addnode_end(stack_t **head, const int n);
 void free_dlistint(stack_t *head);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
