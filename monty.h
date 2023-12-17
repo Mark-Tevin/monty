@@ -116,8 +116,8 @@ int _strcmp(char *s1, char *s2);
 void state_init(void);
 void clear_state(void);
 void parse_line(char *line);
-void (*get_func(char *op))(stack_t **stack, unsigned int line_number);
-void runner(void);
+void (*get_func(char *opcode))(stack_t **stack, unsigned int count);
+void execute_opcode(void);
 
 
 #endif /* MONTY_H */
