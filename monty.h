@@ -1,6 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define BUF_SIZE 4096
+#define MOD_STK 0
+#define MOD_QUE 1
+
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,24 +12,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdbool.h>
 #include <ctype.h>
 #include <stdarg.h>
-
-/**
- * struct bus_s - variables -args, file, line content
- * @file: pointer to monty file
- * @line: line content
- * @lifi: flag change stack <-> queue
- * Description: carries values through the program
- */
-typedef struct bus_s
-{
-	char *arg;
-	FILE *fd;
-	char *line;
-} bus_t;
-
-extern bus_t my_bus;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -56,6 +45,34 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct bus_s - Holds information on the current program state
+ * @buffer: Input buffer
+ * @opcode: Operation code
+ * @arg: operation argument parameter
+ * @stack: Stack of the structure
+ * @file: File pointer
+ * @mode: Mode (stack or queue)
+ * @size: Size of the stack/queue
+ * @count : Line number being processed
+ *
+ * Description: The structure contains info on the current state of the program.
+ * It entails input_buffer, the opcode and args, the stack structure, process file,
+ * the mode and the size of the stack or queue, and the line count.
+ */
+typedef struct bus_s
+{
+	char *buffer;
+	char *opcode;
+	char *arg;
+	stack_t *stack;
+	FILE *file;
+	unsigned int mode;
+	unsigned int size;
+	unsigned int ln;
+} bus_t;
+
 
 typedef void(*op_func)(stack_t**, unsigned int);
 extern stack_t *head;
