@@ -98,5 +98,27 @@ void rotr(stack_t **stack, unsigned int line_number);
 
 /*Utility Functions*/
 void free_stack(stack_t *stack);
+/*External variable*/
+extern bus_t *state
+/* DLinked List Operation */
+size_t print_dlistint(const stack_t *h);
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+void free_dlistint(stack_t *head);
+stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
+int delete_dnodeint_at_index(stack_t **head, unsigned int index);
+
+
+/*string operation*/
+int _strcmp(char *s1, char *s2);
+
+/* Program Logic and Execution */
+void state_init(void);
+void clear_state(void);
+
+void process_line(char *line);
+void (*get_func(char *op))(stack_t **stack, unsigned int line_number);
+void runner(void);
+
 
 #endif /* MONTY_H */
