@@ -100,3 +100,24 @@ void parse_line(char *line)
 		return;
 	state->arg = strtok(NULL, "\n\t");
 }
+
+/**
+ * execute_opcode - Executes an opcode function.
+ */
+void execute_opcode(void)
+{
+	void (*func)(stack_t **, unsigned int) = get_func(state->opcode);
+
+	if (!func)
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n",
+				state->count, state->opcode);
+
+		clear_state();
+		exit(EXIT_FAILURE);
+	}
+
+	func(&(state->stack), state->count);
+}
+
+
