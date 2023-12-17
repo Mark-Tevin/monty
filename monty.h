@@ -115,8 +115,7 @@ int _strcmp(char *s1, char *s2);
 /* Program Logic and Execution */
 void state_init(void);
 void clear_state(void);
-
-void process_line(char *line);
+void parse_line(char *line);
 void (*get_func(char *op))(stack_t **stack, unsigned int line_number);
 void runner(void);
 

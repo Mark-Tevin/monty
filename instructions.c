@@ -44,5 +44,59 @@ void clear_state(void)
 	free(state);
 }
 
+/**
+ * get_func - Retrieves the operation function associated with the opcode.
+ * @opcode: The opcode string.
+ *
+ * Return: Pointer to the corresponding function, NULL if opcode does not exist
+ */
+void (*get_func(char *opcode))(stack_t **stack, unsigned int count)
+{
+	instruction_t operation_table[] = {
+		{"push", push},
+		{"pint", pint},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"pop", pop},
+		{"swap", swap},
+		{"nop", nop},
+		{"add", _add},
+		{"sub", _sub},
+		{"mul", _mul},
+		{"div", _div},
+		{"mod", _mod},
+		{"pall", pall},
+		{"stack", stack},
+		{"queue", queue},
+		{"rotl", rotl},
+		{"rotr", rotr},
+		{NULL, NULL}
+	};
+	instruction_t *instr = operation_table;
 
+	while (instr->opcode)
+	{
+		if (!_strcmp(opcode, instr->opcode))
+			return (instr->f);
+		instr++;
+	}
 
+	return (NULL);
+}
+
+/**
+ * parse_line - Parses a line of input into opcode and argument string.
+ * @line: The line of input.
+ *
+ * Description: This function assigns the opcode and argument from the input line
+ *              to the corresponding fields in the bus struct. If opcode is
+ *              missing, it leaves the fields as NULL.
+ */
+void parse_line(char *line)
+{
+	state->count++;
+	state->opcode = strtok(line, " \n\t");
+	if (!state->opcode)
+		return;
+	state->arg = strtok(NULL, "\n\t");
+}
