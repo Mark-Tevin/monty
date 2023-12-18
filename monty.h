@@ -73,17 +73,6 @@ typedef struct bus_s
 	unsigned int count;
 } bus_t;
 
-
-typedef void(*op_func)(stack_t**, unsigned int);
-extern stack_t *head;
-
-/*operation for files*/
-void read_file(FILE *);
-FILE *check(int argc, char *argv[])
-int parse_line(char *buffer, int line_number, int format);
-void len_chars(FILE *);
-void find_func(char *, char *, int, int);
-
 /*Func prototype for the stack operation*/
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
@@ -100,15 +89,13 @@ void rotr(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 /*External variable*/
 extern bus_t *state;
+
 /* DLinked List Operation */
 size_t display_listint(const stack_t *head);
 stack_t *insert_at_start(stack_t **head, const int n)
 stack_t *addnode_end(stack_t **head, const int n)
 stack_t *fetch_at_index(stack_t *head, unsigned int index)
 void deallocate_list(stack_t *head)
-
-
-
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 
@@ -121,6 +108,11 @@ void clear_state(void);
 void parse_line(char *line);
 void (*get_func(char *opcode))(stack_t **stack, unsigned int count);
 void execute_opcode(void);
+/*stack and queue switching*/
+void stack(stack_t **stack, unsigned int count);
+void queue(stack_t **stack, unsigned int count);
 
+/*strings prototype*/
+int compare_strings(const char *s1, const char *s2);
 
 #endif /* MONTY_H */
