@@ -85,10 +85,10 @@ stack_t *addnode_end(stack_t **head, const int n)
 /**
  * fetch_at_index - Retrieves the node at a specified index.
  * @head: Pointer to head node of the doubly linked list.
- * @index: Index of the node to retrieve.
+ * @counter: Index of the node to retrieve.
  * Return: Pointer to the node at the given index, else NULL 
  */
-stack_t *fetch_at_index(stack_t *head, unsigned int index)
+stack_t *fetch_at_index(stack_t *head, unsigned int counter)
 {
 	unsigned int counter;
 

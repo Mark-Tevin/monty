@@ -43,7 +43,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, unsigned int counter);
 } instruction_t;
 
 /**
@@ -92,10 +92,10 @@ extern bus_t *state;
 
 /* DLinked List Operation */
 size_t display_listint(const stack_t *head);
-stack_t *insert_at_start(stack_t **head, const int n)
-stack_t *addnode_end(stack_t **head, const int n)
-stack_t *fetch_at_index(stack_t *head, unsigned int index)
-void deallocate_list(stack_t *head)
+stack_t *insert_at_start(stack_t **head, const int n);
+stack_t *addnode_end(stack_t **head, const int n);
+stack_t *fetch_at_index(stack_t *head, unsigned int counter);
+void deallocate_list(stack_t *head);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 
