@@ -90,7 +90,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int count);
 void push(stack_t **stack, unsigned int count);
 void pint(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
@@ -102,11 +102,13 @@ void free_stack(stack_t *stack);
 extern bus_t *state;
 /* DLinked List Operation */
 size_t display_listint(const stack_t *head);
+stack_t *insert_at_start(stack_t **head, const int n)
+stack_t *addnode_end(stack_t **head, const int n)
+stack_t *fetch_at_index(stack_t *head, unsigned int index)
+void deallocate_list(stack_t *head)
 
-stack_t *insert_at_start(stack_t **head, const int n);
-stack_t *addnode_end(stack_t **head, const int n);
-void free_dlistint(stack_t *head);
-stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
+
+
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 

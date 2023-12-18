@@ -82,4 +82,38 @@ stack_t *addnode_end(stack_t **head, const int n)
 	return (newnode);
 }
 
+/**
+ * fetch_at_index - Retrieves the node at a specified index.
+ * @head: Pointer to head node of the doubly linked list.
+ * @index: Index of the node to retrieve.
+ * Return: Pointer to the node at the given index, else NULL 
+ */
+stack_t *fetch_at_index(stack_t *head, unsigned int index)
+{
+	unsigned int counter;
 
+	for (counter = 0; counter < index && head; counter++)
+	{
+		head = head->next;
+	}
+
+	return (head);
+}
+
+/**
+ *
+ * deallocate_list - Frees a doubly linked list.
+ * @head: Pointer to the head node of the list.
+ */
+void deallocate_list(stack_t *head)
+{
+	stack_t *h = head;
+	stack_t *next;
+
+	while (h)
+	{
+		next = h->next;
+		free(h);
+		h = next;
+	}
+}
