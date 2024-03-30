@@ -99,10 +99,10 @@ void str_error(int error_code, ...)
 	switch (error_code)
 	{
 		case 10:
-			fprintf(stderr, "Error: Can't print character, value out of ASCII range%d\n", line_num);
+			fprintf(stderr, "Error: Can't print char, out of range%d\n", line_num);
 			break;
 		case 11:
-			fprintf(stderr, "Error: Can't print char, stack is empty at %d\n", line_num);
+			fprintf(stderr, "Error: Can't print char, stack is empty%d\n", line_num);
 			break;
 		default:
 			break;
