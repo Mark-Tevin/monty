@@ -64,5 +64,3 @@ void pop_top(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void swap_nodes(stack_t **, unsigned int);
 
-
-/* Math Operations*/
