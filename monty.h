@@ -42,12 +42,11 @@ extern stack_t *head;
 typedef void (*op_func) (stack_t **, unsigned int);
 
 /*operations*/
-void open_file(char *file_name);
-int parse_line(char *buffer, int line_number, int format);
+void open_file(char *file_path);
+int process_input(char *buffer, int line_number, int format);
 void read_file(FILE *);
 int len_chars(FILE *);
-void find_func(char *, char *, int, int);
-
+void execute_instruct(char *, char *, int, int);
 
 
 /*stack operations*/
