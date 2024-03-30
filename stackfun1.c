@@ -21,7 +21,7 @@ void print_stack(stack_t **stack_head, unsigned int line_num)
 }
 /**
 * pop_top - removes a node from stack
-* @stack : pointer to pointer
+* @stack_head : pointer to pointer
 * @line_num: line number
 */
 void pop_top(stack_t **stack_head, unsigned int line_num)
@@ -36,6 +36,17 @@ void pop_top(stack_t **stack_head, unsigned int line_num)
 	if (*stack_head != NULL)
 		(*stack_head)->prev = NULL;
 	free(temp);
+}
+/**
+* print_top - prints the top node
+* @stack_head: pointer to pointer
+* @line_number: Integer representing line number
+*/
+void print_top(stack_t **stack_head, unsigned int line_number)
+{
+	if (stack_head == NULL || *stack_head == NULL)
+		more_error(6, line_number);
+	printf("%d\n", (*stack_head)->n);
 }
 
 /*print stcak, poptop, printtop, */
