@@ -37,4 +37,5 @@ void pop_top(stack_t **stack_head, unsigned int line_num)
 		(*stack_head)->prev = NULL;
 	free(temp);
 }
+
 /*print stcak, poptop, printtop, */
