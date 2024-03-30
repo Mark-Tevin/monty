@@ -140,4 +140,3 @@ void execute_func(op_func func, char *op, char *val, int line_num, int format)
 	else
 		func(&head, line_num);
 }
-/*openfile,readfile, parsefile, find func, callfunc*/
