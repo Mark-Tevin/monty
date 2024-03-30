@@ -70,11 +70,39 @@ void more_error(int error_code, ...)
 		case 8:
 			line_num = va_arg(args, unsigned int);
 			op = va_arg(args, char *);
-			fprintf(stderr, "L%d: Unable to execute '%s', stack is short", line_num, op);
+			fprintf(stderr, "L%d: Unable to execute '%s', short stack", line_num, op);
 			break;
 		case 9:
 			fprintf(stderr, "Line %d: Division by zero error\n",
 				va_arg(args, unsigned int));
+			break;
+		default:
+			break;
+	}
+	free_nodes();
+	exit(EXIT_FAILURE);
+}
+
+/**
+* str_error - sorts out string related errors
+* @error_code: The error codes are as follows:
+* (10) - The number inside a node is outside the valid ASCII bounds.
+* (11) - The stack is empty.
+*/
+void str_error(int error_code, ...)
+{
+	va_list args;
+	int line_num;
+
+	va_start(args, error_code);
+	line_num = va_arg(args, int);
+	switch (error_code)
+	{
+		case 10:
+			fprintf(stderr, "Error: Can't print character, value out of ASCII range%d\n", line_num);
+			break;
+		case 11:
+			fprintf(stderr, "Error: Can't print char, stack is empty at %d\n", line_num);
 			break;
 		default:
 			break;
