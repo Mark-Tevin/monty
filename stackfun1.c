@@ -2,51 +2,53 @@
 
 /**
 * print_stack - prints out the elements of a stack data structure.
-* @stack_head: parameter, pointer to the top of the stack
-* @line_num: unused line number
+* @stack: parameter, pointer to the top of the stack
+* @line_number: unused line number
 */
-void print_stack(stack_t **stack_head, unsigned int line_num)
+void print_stack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
-	(void) line_num;
-	if (stack_head == NULL)
+	(void) line_number;
+	if (stack == NULL)
 		exit(EXIT_FAILURE);
-	temp = *stack_head;
+	temp = *stack;
 	while (temp != NULL)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
 }
+
+/**
+* print_top - prints the top node
+* @stack : pointer to pointer
+* @line_number: Integer representing line number
+*/
+void print_top(stack_t **stack, unsigned int line_number)
+{
+	if (stack == NULL || *stack == NULL)
+		more_error(6, line_number);
+	printf("%d\n", (*stack)->n);
+}
+
 /**
 * pop_top - removes a node from stack
-* @stack_head : pointer to pointer
-* @line_num: line number
+* @stack: pointer to pointer
+* @line_number: line number
 */
-void pop_top(stack_t **stack_head, unsigned int line_num)
+
+void pop_top(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
-	if (stack_head == NULL || *stack_head == NULL)
-		more_error(7, line_num);
+	if (stack == NULL || *stack == NULL)
+		more_error(7, line_number);
 
-	temp = *stack_head;
-	*stack_head = temp->next;
-	if (*stack_head != NULL)
-		(*stack_head)->prev = NULL;
+	temp = *stack;
+	*stack = temp->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
 	free(temp);
 }
-/**
-* print_top - prints the top node
-* @stack_head: pointer to pointer
-* @line_number: Integer representing line number
-*/
-void print_top(stack_t **stack_head, unsigned int line_number)
-{
-	if (stack_head == NULL || *stack_head == NULL)
-		more_error(6, line_number);
-	printf("%d\n", (*stack_head)->n);
-}
-
 /*print stcak, poptop, printtop, */
