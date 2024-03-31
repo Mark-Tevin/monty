@@ -3,8 +3,9 @@
 
 #define _GNU_SOURCE
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
-#include <strings.h>
+#include<stdlib.h>
 #include <ctype.h>
 #include <stdarg.h>
 
@@ -51,6 +52,7 @@ void execute_instruct(char *, char *, int, int);
 
 /*stack operations*/
 stack_t *create_node(int n);
+
 void free_nodes(void);
 void print_stack(stack_t **, unsigned int);
 void add_to_stack(stack_t **, unsigned int);
@@ -62,3 +64,9 @@ void print_top(stack_t **, unsigned int);
 void pop_top(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void swap_nodes(stack_t **, unsigned int);
+
+/*error file handling*/
+void error(int error_code, ...);
+void more_error(int error_code, ...);
+
+#endif

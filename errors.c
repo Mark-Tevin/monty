@@ -45,6 +45,7 @@ void error(int error_code, ...)
 	free_nodes();
 	exit(EXIT_FAILURE);
 }
+
 /**
  * more_error- list of the other file handling error functions.
  * @error_code: The error code indicates the type of error.

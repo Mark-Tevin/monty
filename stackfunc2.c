@@ -28,4 +28,24 @@ void add_nodes(stack_t **stack, unsigned int line_number)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+/**
+* swap_nodes - swap the top two elements of stack
+* @stack: pointer to pointer
+* @line_number: line number
+*/
+void swap_nodes(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		more_error(8, line_number, "swap");
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = *stack;
+	temp->next = *stack;
+	(*stack)->prev = temp;
+	temp->prev = NULL;
+	*stack = temp;
+}
 /*swap, nop, add nodes*/
