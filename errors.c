@@ -15,7 +15,7 @@
 void error(int error_code, ...)
 {
 	va_list args;
-	char *op;
+	char *opcode;
 	int line_num;
 
 	va_start(args, error_code);
@@ -29,8 +29,8 @@ void error(int error_code, ...)
 			break;
 		case 3:
 			line_num = va_arg(args, int);
-			op = va_arg(args, char *);
-			fprintf(stderr, "Line %d: Unknown instruction: %s\n", line_num, op);
+			opcode = va_arg(args, char *);
+			fprintf(stderr, "Line %d: Unknown instruction: %s\n", line_num, opcode);
 			break;
 		case 4:
 			fprintf(stderr, "Error: Memory allocation failed\n");
@@ -54,7 +54,7 @@ void error(int error_code, ...)
 void more_error(int error_code, ...)
 {
 	va_list args;
-	char *op;
+	char *opcode;
 	int line_num;
 
 	va_start(args, error_code);
@@ -70,8 +70,8 @@ void more_error(int error_code, ...)
 			break;
 		case 8:
 			line_num = va_arg(args, unsigned int);
-			op = va_arg(args, char *);
-			fprintf(stderr, "L%d: Unable to execute '%s', short stack", line_num, op);
+			opcode = va_arg(args, char *);
+			fprintf(stderr, "L%d: Unable to execute '%s', short stack", line_num, opcode);
 			break;
 		case 9:
 			fprintf(stderr, "Line %d: Division by zero error\n",

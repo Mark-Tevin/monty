@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "monty.h"
 
 stack_t *head = NULL;
@@ -101,4 +104,4 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 
 }
 
-/*create node,main, add to queue, add to stack, free_node*/
+/*create node,main, add e*/

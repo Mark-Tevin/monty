@@ -64,9 +64,13 @@ void print_top(stack_t **, unsigned int);
 void pop_top(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void swap_nodes(stack_t **, unsigned int);
+void push(stack_t **stack, unsigned int);
 
 /*error file handling*/
 void error(int error_code, ...);
 void more_error(int error_code, ...);
 
+
+int is_digit(char *string);
+int isnumber(char *str);
 #endif
